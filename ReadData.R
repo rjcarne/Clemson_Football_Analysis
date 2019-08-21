@@ -6,8 +6,8 @@ inFileNames <- c("2008.xlsx","2009.xlsx","2010.xlsx","2011.xlsx","2012.xlsx",
 
 num_GamesinSeason <- c(8,15,14,15,14,14,14,16,16,15,16)
 StatNames <- c("Passing","Rushing","Recieving","Defense","Kicking")
-#Years <- c("2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")
-Years <- c("2008","2009")
+Years <- c("2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")
+
 
 
 Clemson <- list()
@@ -17,7 +17,7 @@ Clemson <- list()
 #depth2008 <- readxl::read_excel(inFileNames[1], sheet = 1, range = "$A$1:$F$112")
 
 #Loop through all seasons
-for (g in 1:2) {
+for (g in 1:11) {
     
     #Create list for season
     Season <- list()
@@ -42,7 +42,7 @@ for (g in 1:2) {
         Passing <- subset(Passing,Position != 0)
 
         #Rushing
-        Rushing <- readxl::read_excel(inFileNames[g], sheet = k, range = "$A$12:$I$20")
+        Rushing <- readxl::read_excel(inFileNames[g], sheet = k, range = "$A$11:$I$20")
         #Set All NA's to 0
         for (i in 1:8) {
             for (j in 1:9) {
@@ -52,7 +52,7 @@ for (g in 1:2) {
             }
         }
         #trim Null Rows
-        Rushing <- subset(Rushing,Player != 0)
+        Rushing <- subset(Rushing,Position != 0)
 
         #Recieving
         Recieving <- readxl::read_excel(inFileNames[g], sheet = k, range = "$A$23:$F$49")
@@ -104,25 +104,21 @@ for (g in 1:2) {
 
 
         #Add Game to Season
-        Season[[k]] <- Game
+        Season[[k-1]] <- Game
 
         rm(Passing,Rushing,Recieving,Defense,Kicking,i,j,Game)
 
         }
 
     #Add Season to All Stats
+    
     Clemson[[g]] <- Season
     rm(Season)
 }
 
 names(Clemson) <- Years
+rm (g,k,inFileNames,num_GamesinSeason,StatNames,Years)
 
-
-#How to pull stats. put into function
-#Season_Break <- Clemson[[1]]
-#Game_Break <- Season_Break[[3]]
-#State_Break <- Game_Break[[2]]
-#ReturnVal2 <- State_Break[1,3]  
 
 
 
