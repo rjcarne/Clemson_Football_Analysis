@@ -1,4 +1,5 @@
 #Create vectors of file names, sheets in each file, etc
+setwd("/Users/RyanCarney/Documents/GitHub/Clemson_Football_Analysis/BoxScores")
 
 inFileNames <- c("2008.xlsx","2009.xlsx","2010.xlsx","2011.xlsx","2012.xlsx",
                  "2013.xlsx","2014.xlsx","2015.xlsx","2016.xlsx","2017.xlsx",
@@ -40,7 +41,7 @@ for (g in 1:11) {
         }
         #trim Null Rows
         Passing <- subset(Passing,Position != 0)
-
+        
         #Rushing
         Rushing <- readxl::read_excel(inFileNames[g], sheet = k, range = "$A$11:$I$20")
         #Set All NA's to 0
@@ -53,7 +54,8 @@ for (g in 1:11) {
         }
         #trim Null Rows
         Rushing <- subset(Rushing,Position != 0)
-
+           
+        
         #Recieving
         Recieving <- readxl::read_excel(inFileNames[g], sheet = k, range = "$A$23:$F$49")
         #Set All NA's to 0
@@ -66,7 +68,8 @@ for (g in 1:11) {
         }
         #trim Null Rows
         Recieving <- subset(Recieving,Position != 0)
-
+        
+        
         #Defense
         Defense <- readxl::read_excel(inFileNames[g], sheet = k, range = "$A$52:$M$109")
         #Set All NA's to 0
@@ -79,7 +82,7 @@ for (g in 1:11) {
             }
         #trim Null Rows
         Defense <- subset(Defense,Position != 0)
-
+        
 
         #Kicking
 
@@ -95,7 +98,8 @@ for (g in 1:11) {
         }
         #trim Null Rows
         Kicking <- subset(Kicking,Position != 0)
-
+        
+        
         #Compile Into One List
 
         Game <- list(Passing,Rushing,Recieving,Defense,Kicking)
@@ -119,6 +123,8 @@ for (g in 1:11) {
 names(Clemson) <- Years
 rm (g,k,inFileNames,num_GamesinSeason,StatNames,Years)
 
+#Change working directory back for R scripts
+setwd("/Users/RyanCarney/Documents/GitHub/Clemson_Football_Analysis")
 
 
 

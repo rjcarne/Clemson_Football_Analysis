@@ -5,6 +5,6 @@ setwd("/Users/RyanCarney/Documents/GitHub/Clemson_Football_Analysis")
 source("ReadData.R")
 
 #Defines Functions
-source("FunctionDefinitions.R")
+#source("FunctionDefinitions.R")
 
-PullData("2016",15,"Passing",6,6)
+#PullData("2016",15,"Passing",6,6)
