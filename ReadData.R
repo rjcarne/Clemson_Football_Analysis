@@ -12,6 +12,7 @@ Years <- c("2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016
 
 
 Clemson <- list()
+DepthCharts <- list()
 
 
 #Read Depth Chart
@@ -19,6 +20,25 @@ Clemson <- list()
 
 #Loop through all seasons
 for (g in 1:11) {
+    
+    #Read Depth Chart
+    depth <- readxl::read_excel(inFileNames[g], sheet = 1, range = "$A$1:$F$122")
+    statnames <- c("Player","Position","Height(Inches)","Weight(LBs)","Recruiting Rank","Stars")
+    #Set All NA's to 0
+    for (i in 1:120) {
+        for (j in 1:6) {
+            if (is.na(depth[i,j])) {
+                depth[i,j] <- 0
+            }
+        }
+    }
+    depth <- subset(depth,Position != 0)
+    swap <- depth[,1]
+    depth[,1] <- depth[,2]
+    depth[,2] <- swap
+    colnames(depth) <- statnames
+    DepthCharts[[g]] <- depth
+    rm(depth,swap)
     
     #Create list for season
     Season <- list()
@@ -119,11 +139,11 @@ for (g in 1:11) {
     Clemson[[g]] <- Season
     rm(Season)
 }
-
+names(DepthCharts) <- Years
 names(Clemson) <- Years
 rm (g,k,inFileNames,num_GamesinSeason,StatNames,Years)
 
-#Change working directory back for R scripts
+#Change working directory back to master for R scripts
 setwd("/Users/RyanCarney/Documents/GitHub/Clemson_Football_Analysis")
 
 
