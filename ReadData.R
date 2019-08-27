@@ -141,7 +141,7 @@ for (g in 1:11) {
 }
 names(DepthCharts) <- Years
 names(Clemson) <- Years
-rm (g,k,inFileNames,num_GamesinSeason,StatNames,Years)
+rm (g,k,inFileNames,num_GamesinSeason,StatNames,Years,statnames)
 
 #Change working directory back to master for R scripts
 setwd("/Users/RyanCarney/Documents/GitHub/Clemson_Football_Analysis")
