@@ -1,4 +1,5 @@
 #Create vectors of file names, sheets in each file, etc
+
 setwd("/Users/RyanCarney/Documents/GitHub/Clemson_Football_Analysis/BoxScores")
 
 inFileNames <- c("2008.xlsx","2009.xlsx","2010.xlsx","2011.xlsx","2012.xlsx",
